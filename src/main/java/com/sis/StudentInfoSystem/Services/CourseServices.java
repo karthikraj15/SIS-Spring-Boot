@@ -3,6 +3,8 @@ package com.sis.StudentInfoSystem.Services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+
 import com.sis.StudentInfoSystem.Models.Course;
 
 
@@ -14,8 +16,8 @@ public interface CourseServices {
 	
 	public Course addCourse(Course courser);
 
-	public Course updateCourse(String courseId, Course course);
+	public ResponseEntity<?> updateCourse(String courseId, Course course);
 	
-	public String deleteCourse(String courseId);
+	public ResponseEntity<?> deleteCourse(String courseId);
 
 }

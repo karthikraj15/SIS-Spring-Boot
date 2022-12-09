@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.sis.StudentInfoSystem.Models.Course;
@@ -31,19 +32,24 @@ public class CourseServicesImpl implements CourseServices {
 	}
 
 	@Override
-	public Course updateCourse(String courseId, Course course) {
-		if(courseRepo.existsById(courseId))
-			courseRepo.deleteById(courseId);
-		return courseRepo.save(course);
+	public ResponseEntity<?> updateCourse(String courseId, Course course) {
+		if(courseRepo.existsById(courseId)){
+			courseRepo.save(course);
+			return ResponseEntity.ok(course);
+		}
+		else {
+			return ResponseEntity.status(404).body(courseId + " does not exist");
+		}
 	}
 
 	@Override
-	public String deleteCourse(String courseId) {
-		if(courseRepo.existsById(courseId)) 
+	public ResponseEntity<?> deleteCourse(String courseId) {
+		if(courseRepo.existsById(courseId)) {
 			courseRepo.deleteById(courseId);
+			return ResponseEntity.ok(courseId + " deleted successfully");
+		}
 		else
-			return "Course : "+ courseId+" - does not exists";
-		return "Course : "+ courseId+" - deleted sucessfully";
+			return ResponseEntity.status(404).body(courseId + " does not exist");
 	}
 
 }

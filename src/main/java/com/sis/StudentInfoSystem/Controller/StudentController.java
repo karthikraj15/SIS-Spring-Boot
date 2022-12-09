@@ -19,10 +19,9 @@ public class StudentController {
 	@Autowired
 	private StudentServices studentServ;
 	
-	//@RolesAllowed({"ROLE_NORMAL"})
-	@PreAuthorize("hasRole('ROLE_NORMAL')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/students")
-	public List<Student> getCourses(){
+	public List<Student> getStudents(){
 		return this.studentServ.getStudents();
 	}
 	
@@ -31,18 +30,22 @@ public class StudentController {
 		return this.studentServ.getStudent(usn);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/students")
 	public Student addStudent(@RequestBody Student stu) {
 		return this.studentServ.addStudent(stu);
-	}
-	
-	@DeleteMapping("/students/{usn}")
-	public ResponseEntity<?> deleteStudent(@PathVariable String usn) {
-		return this.studentServ.deleteStudent(usn);
 	}
 	
 	@PutMapping("/students/{usn}")
 	public ResponseEntity<?> updateStudent(@PathVariable String usn, @RequestBody Student student) {
 		return this.studentServ.updateStudent(usn, student);
 	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@DeleteMapping("/students/{usn}")
+	public ResponseEntity<?> deleteStudent(@PathVariable String usn) {
+		return this.studentServ.deleteStudent(usn);
+	}
+	
+	
 }
