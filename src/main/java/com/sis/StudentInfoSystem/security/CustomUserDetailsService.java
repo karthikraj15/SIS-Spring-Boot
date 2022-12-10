@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.sis.StudentInfoSystem.Repository.UserRepository;
 
-import java.util.ArrayList;
-
 @Service
 public class CustomUserDetailsService  implements  UserDetailsService {
 
