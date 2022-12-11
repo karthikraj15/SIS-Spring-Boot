@@ -17,12 +17,12 @@ public class StudentController {
 	@Autowired
 	private StudentServices studentServ;
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/students")
 	public List<Student> getStudents(){
 		return this.studentServ.getStudents();
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/students/{usn}")
 	public Optional<Student> getStudent(@PathVariable String usn) {
 		return this.studentServ.getStudent(usn);
@@ -30,7 +30,7 @@ public class StudentController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/students")
-	public Student addStudent(@RequestBody Student stu) {
+	public ResponseEntity<?> addStudent(@RequestBody Student stu) {
 		return this.studentServ.addStudent(stu);
 	}
 	

@@ -5,7 +5,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,15 @@ import com.sis.StudentInfoSystem.Models.User;
 import com.sis.StudentInfoSystem.Repository.StudentsRepository;
 import com.sis.StudentInfoSystem.Repository.UserRepository;
 
+
 @Service
 public class StudentServicesImpl implements StudentServices {
 
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Value("${admin}")
+	private String admin;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder ;
@@ -28,7 +34,12 @@ public class StudentServicesImpl implements StudentServices {
 	
 	@Override
 	public List<Student> getStudents() {
-		return studentRepo.findAll();	
+		String email=SecurityContextHolder.getContext().getAuthentication().getName();
+		if(email.equals(admin))
+			return studentRepo.findAll();
+		else {
+			return studentRepo.findByEmail(email);
+		}		
 	}
 	
 	@Override
@@ -37,12 +48,18 @@ public class StudentServicesImpl implements StudentServices {
 	}
 
 	@Override
-	public Student addStudent(Student stu) {
-		String Id=UUID.randomUUID().toString().split("-")[0];
-		String encryptPwd=passwordEncoder.encode(stu.getUsn());
-		User user=new User(Id,stu.getEmail(),encryptPwd,"NORMAL");
-		userRepo.save(user);
-		return studentRepo.save(stu);
+	public ResponseEntity<?> addStudent(Student stu) {
+		String email=stu.getEmail();
+		if(studentRepo.existsByEmail(email)) {
+			return ResponseEntity.status(400).body(email + " already exist");
+		}
+		else {
+			String Id=UUID.randomUUID().toString().split("-")[0];
+			String encryptPwd=passwordEncoder.encode(stu.getUsn());
+			User user=new User(Id,email,encryptPwd,"NORMAL");
+			userRepo.save(user);
+			return ResponseEntity.ok(studentRepo.save(stu));
+		}		
 	}
 
 	@Override

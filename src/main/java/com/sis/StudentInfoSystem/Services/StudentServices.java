@@ -13,7 +13,7 @@ public interface StudentServices {
 	
 	public Optional<Student> getStudent(String usn);
 	
-	public Student addStudent(Student stu);
+	public ResponseEntity<?> addStudent(Student stu);
 
 	public ResponseEntity<?> updateStudent(String uns, Student student);
 	
