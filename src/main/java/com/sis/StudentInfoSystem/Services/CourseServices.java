@@ -17,16 +17,16 @@ public class CourseServices {
 	@Autowired
 	private CoursesRepository courseRepo;
 	
+	public List<Course> getCourses() {
+		return courseRepo.findAll();
+	}
+	
 	public Optional<Course> getCourse(String courseId) {
 		return courseRepo.findById(courseId);
 	}
 
 	public Course addCourse(Course cur) {
 		return courseRepo.save(cur);
-	}
-
-	public List<Course> getCourses() {
-		return courseRepo.findAll();
 	}
 
 	public ResponseEntity<?> updateCourse(String courseId, Course course) {
