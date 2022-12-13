@@ -1,6 +1,7 @@
 package com.sis.StudentInfoSystem.Models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="students")
@@ -11,6 +12,8 @@ public class Student {
 	private String name;
 	private Integer sem;
 	private String dob;
+	
+	@Indexed(unique=true)
 	private String email;
 	private String phone;
 	private String college;

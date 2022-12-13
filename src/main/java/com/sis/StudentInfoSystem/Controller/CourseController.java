@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import com.sis.StudentInfoSystem.Models.Course;
 import com.sis.StudentInfoSystem.Services.CourseServices;
 
+
+@CrossOrigin("*")
 @RestController
 public class CourseController {
 	

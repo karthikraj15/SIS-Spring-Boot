@@ -7,6 +7,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import com.sis.StudentInfoSystem.security.JwtRequest;
 import com.sis.StudentInfoSystem.security.JwtResponse;
 import com.sis.StudentInfoSystem.security.JwtUtil;
 
+@CrossOrigin("*")
 @RestController
 public class JwtController {
 	
