@@ -35,7 +35,7 @@ public class CourseServices {
 			return ResponseEntity.ok(course);
 		}
 		else {
-			return ResponseEntity.status(404).body(courseId + " does not exist");
+			return ResponseEntity.status(500).body(courseId + " does not exist");
 		}
 	}
 
@@ -45,7 +45,7 @@ public class CourseServices {
 			return ResponseEntity.ok(courseId + " deleted successfully");
 		}
 		else
-			return ResponseEntity.status(404).body(courseId + " does not exist");
+			return ResponseEntity.status(500).body(courseId + " does not exist");
 	}
 
 }

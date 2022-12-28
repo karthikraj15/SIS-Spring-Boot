@@ -60,7 +60,7 @@ public class StudentServices {
 		
 		String Id=UUID.randomUUID().toString().split("-")[0];
 		String encryptPwd=passwordEncoder.encode(stu.getUsn());
-		User user= new User(Id,stu.getEmail(),encryptPwd,"NORMAL");
+		User user= new User(Id,stu.getEmail(),encryptPwd,"STUDENT");
 		studentRepo.save(stu);
 		userRepo.save(user);
 		return ResponseEntity.ok(stu);		
@@ -72,7 +72,7 @@ public class StudentServices {
 			return ResponseEntity.ok(student);
 		}
 		else {
-			return ResponseEntity.status(404).body(usn + " does not exist");
+			return ResponseEntity.status(500).body(usn + " does not exist");
 		}
 	}
 
@@ -84,6 +84,6 @@ public class StudentServices {
 			return ResponseEntity.ok(usn + " deleted successfully");
 		}
 		else
-			return ResponseEntity.status(404).body(usn + " does not exist");
+			return ResponseEntity.status(500).body(usn + " does not exist");
 	}
 }
