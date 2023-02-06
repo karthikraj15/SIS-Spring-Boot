@@ -30,7 +30,7 @@ public class EnrollController {
 		return this.enrollServ.studentEnroll(courseId);
 	}
 	
-	//all enrollments
+	//all enrollments to course
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/enrolls")
 	public List<Enroll> getEnrolls(){
