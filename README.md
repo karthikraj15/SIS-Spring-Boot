@@ -1,6 +1,6 @@
 # Student Information System
 
-- This project was bootstrapped with - [Spring Boot]https://spring.io/)
+- This project was bootstrapped with - [Spring Boot](https://spring.io/)
 - Database used MongoDB (Mongo-Atlas)
 
 ## Features
