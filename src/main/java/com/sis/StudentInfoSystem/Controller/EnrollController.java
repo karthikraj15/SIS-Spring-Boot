@@ -71,5 +71,4 @@ public class EnrollController {
 	public ResponseEntity<?>  assignCourse(@PathVariable("courseId") String courseId,@PathVariable("usn") String usn){
 		return this.enrollServ.assignCourse(courseId,usn);
 	}
-	
 }
