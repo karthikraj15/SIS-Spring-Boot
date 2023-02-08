@@ -36,7 +36,4 @@ public class EnrollCourse {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	
-	
-	
 }

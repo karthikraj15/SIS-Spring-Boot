@@ -42,8 +42,5 @@ public class Enroll {
 
 	public void setCourses(List<EnrollCourse> courses) {
 		this.courses = courses;
-	}
-	
-	
-		
+	}		
 }

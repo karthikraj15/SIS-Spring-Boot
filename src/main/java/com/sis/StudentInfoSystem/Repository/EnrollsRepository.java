@@ -6,6 +6,4 @@ import com.sis.StudentInfoSystem.Models.Enroll;
 
 public interface EnrollsRepository extends MongoRepository<Enroll, String> {
 	
-	
-
 }

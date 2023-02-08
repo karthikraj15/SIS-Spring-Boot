@@ -129,6 +129,5 @@ public class EnrollServices {
 			Enroll enroll=new Enroll(usn,email, List.of( enrollCourse));
 			return ResponseEntity.ok(enrollRepo.save(enroll));
 		}
-	}
-	
+	}	
 }
